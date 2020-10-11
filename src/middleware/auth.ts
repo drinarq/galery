@@ -22,7 +22,6 @@ export function registration(email: string, name: string, surname: string, passw
     };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function signOut(history: any) {
     return (dispatch: Dispatch) => {
         dispatch(authActions.LogoutAction());
