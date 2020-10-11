@@ -46,6 +46,7 @@ function Registration() {
                     variant="outlined"
                     margin="normal"
                     color="secondary"
+                    size="small"
                     value={email}
                     onChange={emailChange}
                 ></TextField>
@@ -55,15 +56,17 @@ function Registration() {
                     variant="outlined"
                     margin="normal"
                     color="secondary"
+                    size="small"
                     value={name}
                     onChange={nameChange}
                 ></TextField>
                 <TextField
                     id="standard-name"
-                    label="name"
+                    label="surname"
                     variant="outlined"
                     margin="normal"
                     color="secondary"
+                    size="small"
                     value={surname}
                     onChange={surnameChange}
                 ></TextField>
@@ -73,6 +76,7 @@ function Registration() {
                     variant="outlined"
                     margin="normal"
                     color="secondary"
+                    size="small"
                     value={password}
                     onChange={passwordChange}
                 ></TextField>
@@ -82,6 +86,7 @@ function Registration() {
                     variant="outlined"
                     margin="normal"
                     color="secondary"
+                    size="small"
                     value={confirmPass}
                     onChange={ConfirmPasswordChange}
                 ></TextField>
