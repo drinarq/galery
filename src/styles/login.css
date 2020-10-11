@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: pink;
+}
+.login_block {
+    display: flex;
+    border: 1px solid lightgray;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 50px;
+    background-color: white;
+    color: lightgray;
+}
+.button{
+    margin-bottom:20px;
+    margin-top: 20px;
+}

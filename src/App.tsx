@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import Login from './view/login';
+import Registration from './view/registration';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import firebase from 'firebase';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(): JSX.Element {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/login" component={Login} />
+                <Route path="/registration" component={Registration}></Route>
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
