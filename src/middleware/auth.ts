@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux';
 import * as AuthService from '../services/authorization';
 import * as authActions from '../store/actions/auth';
+import * as H from "history";
 
-export function signIn(email: string, password: string, history: any) {
+export function LogIn(email: string, password: string, history: any) {
     return (dispatch: Dispatch) => {
         dispatch(authActions.loginInAction());
         AuthService.LogIN(email, password).then(() => {
@@ -17,12 +18,12 @@ export function registration(email: string, name: string, surname: string, passw
         dispatch(authActions.RegisterAction());
         AuthService.registration(email, name, surname, password).then(() => {
             dispatch(authActions.SuccessRegisterAction());
-            history.push('/');
+            history.push('/login');
         });
     };
 }
 
-export function signOut(history: any) {
+export function LogOut(history: any) {
     return (dispatch: Dispatch) => {
         dispatch(authActions.LogoutAction());
         AuthService.Logout().then(() => {

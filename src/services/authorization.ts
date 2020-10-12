@@ -21,8 +21,7 @@ export const registration = (email: string, name: string, surname: string, passw
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            firebase.database().ref().child('users').child(res.user.uid).set({ email, name, surname });
+            console.log(name);
+            firebase.database().ref().child(`users/${res.user!.uid}` ).set({ email:email, name:name, surname:surname}).then (r =>console.log(r));
         });
 };

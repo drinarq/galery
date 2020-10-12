@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyDRC8cKUH8box0qsBCqdxCg6x0wAQl84S0',
-    authDomain: 'gallery-3af7c.firebaseapp.com',
+    authDomain: 'gallery-3af7c.firebaseio.com/',
     databaseURL: 'https://gallery-3af7c.firebaseio.com',
     projectId: 'gallery-3af7c',
     storageBucket: 'gallery-3af7c.appspot.com',

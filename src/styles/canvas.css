@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: pink;
+}
+.konva-container{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 70%;
+    width: 50%;
+    border-radius: 5px;
+}
