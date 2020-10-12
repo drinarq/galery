@@ -1,87 +1,84 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import '../../styles/canvas.css';
-import {Stage, Layer, Line} from 'react-konva';
-import { MODE, COLOR_MAP } from "../../helpers/Constants/convasConsts";
+import { Stage, Layer, Line } from 'react-konva';
+import {  COLOR_MAP } from '../../helpers/Constants/convasConsts';
+import DrawToolbar from './Toolbar';
 
-
-const getScaledPoint = (stage: { getPointerPosition: () => { x: any; y: any; }; }, scale: number) => {
+// @ts-ignore
+const getScaledPoint = (stage, scale) => {
     const { x, y } = stage.getPointerPosition();
     return { x: x / scale, y: y / scale };
 };
 
-function Canvas():JSX.Element{
-
-    let stage;
+function Canvas(): JSX.Element {
+    // @ts-ignore
+    let stage=null;
     const [color, setColor] = useState("DARK");
     const [scale, setScale] = useState(1);
-    const [mode, setMode] = useState(MODE.PENCIL);
     const [currentLine, setCurrentLine] = useState(null);
     const [lines, setLines] = useState([]);
 
     const onMouseDown = () => {
+        // @ts-ignore
         const { x, y } = getScaledPoint(stage, scale);
+        console.log("onMouseDown");
+        // @ts-ignore
         setCurrentLine({ points: [x, y], color });
     };
 
     const onMouseMove = () => {
         if (currentLine) {
+            // @ts-ignore
             const { x, y } = getScaledPoint(stage, scale);
-            switch (mode) {
 
-                case MODE.PENCIL:
-                    setCurrentLine({
-                        ...currentLine,
-                        points: [...currentLine.points, x, y]
-                    });
-                    break;
-                case MODE.LINE:
-                    const [x0, y0] = currentLine.points;
-                    setCurrentLine({
-                        ...currentLine,
-                        points: [x0, y0, x, y]
-                    });
-                    break;
-                default:
-            }
+            setCurrentLine({
+                // @ts-ignore
+                ...currentLine,
+                points: [...currentLine.points, x, y],
+            });
         }
     };
 
     const onMouseUp = () => {
+        // @ts-ignore
         const { x, y } = getScaledPoint(stage, scale);
         setCurrentLine(null);
-        setLines([
-            ...lines,
-            { ...currentLine, points: [...currentLine.points, x, y] }
-        ]);
+        // @ts-ignore
+        setLines([...lines, { ...currentLine, points: [...currentLine.points, x, y] }]);
     };
 
-    const onSetMode = mode => {
-        setMode(mode);
-    };
-
-    const setStageRef = ref => {
+    // @ts-ignore
+    const setStageRef = (ref) => {
         if (ref) {
             stage = ref;
         }
     };
 
-    const onChangeColor = color => {
+    const onChangeColor = (color: string) => {
         setColor(color);
     };
 
-    const onChangeScale = delta => {
-        setScale(scale + delta);
-    };
-
     return (
-            <div className="container">
+        <div className="container">
+            <DrawToolbar
+                color={color}
+                // @ts-ignore
+                scale={scale}
+                onChangeColor={onChangeColor}
+            />
             <Stage
-             className="konva-container">
+                ref={setStageRef}
+                className="konva-container"
+                onMouseDown={onMouseDown}
+                onMouseMove={onMouseMove}
+                onMouseUp={onMouseUp}
+            >
                 <Layer>
                     <Line
                         {...currentLine}
                         scale={{ x: scale, y: scale }}
                         strokeWidth={1}
+                        // @ts-ignore
                         stroke={COLOR_MAP[color]}
                     />
                     {lines.map((line, index) => (
@@ -90,15 +87,14 @@ function Canvas():JSX.Element{
                             {...line}
                             scale={{ x: scale, y: scale }}
                             strokeWidth={1}
+                            // @ts-ignore
                             stroke={COLOR_MAP[line.color]}
                         />
                     ))}
                 </Layer>
-
             </Stage>
-            </div>
-        );
+        </div>
+    );
 }
-
 
 export default Canvas;

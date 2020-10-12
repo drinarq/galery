@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ColorPalette from "./ColorPalette";
+import ColorPalette from "./palette";
 
-function DrawToolbar(props) {
+function DrawToolbar(props: { color: string; onChangeColor: (arg0: string) => void; }) {
 
 
     return (
@@ -11,10 +11,5 @@ function DrawToolbar(props) {
         </div>
     );
 }
-
-DrawToolbar.propTypes = {
-    color: PropTypes.string.isRequired,
-    onChangeColor: PropTypes.func.isRequired,
-};
 
 export default DrawToolbar;

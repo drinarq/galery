@@ -6,12 +6,13 @@ import { colors, COLOR_MAP } from "../../helpers/Constants/convasConsts";
 function ColorPalette(props: { color: string; onChangeColor: (arg0: string) => void; }) {
     return (
         <div className="color-palette">
-            {colors.map(colorKey => (
+            {colors.map((colorKey:string) => (
                 <div
                     key={colorKey}
                     className={cn("color-item", {
                         selected: colorKey === props.color
                     })}
+                    // @ts-ignore
                     style={{ backgroundColor: COLOR_MAP [colorKey] }}
                     onClick={() => {
                         props.onChangeColor(colorKey);

@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dce940f-ac0b-48a2-908a-24df3d6db329" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/registration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/registration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Constants/convasConsts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Constants/convasConsts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/canvas.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/canvas.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/canvas/Toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/canvas/Toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/canvas/canvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/canvas/canvas.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/canvas/palette.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/canvas/palette.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +102,7 @@
       <workItem from="1602274489228" duration="2232000" />
       <workItem from="1602322988198" duration="23458000" />
       <workItem from="1602412973726" duration="8146000" />
-      <workItem from="1602423716095" duration="16137000" />
+      <workItem from="1602423716095" duration="21504000" />
     </task>
     <servers />
   </component>
@@ -128,26 +130,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="108" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602273450543" />
-    <state width="1323" height="159" key="GridCell.Tab.0.bottom" timestamp="1602447290161">
+    <state width="1323" height="159" key="GridCell.Tab.0.bottom" timestamp="1602529962832">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="159" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602447290161" />
-    <state width="1323" height="159" key="GridCell.Tab.0.center" timestamp="1602447290160">
+    <state width="1323" height="159" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602529962832" />
+    <state width="1323" height="159" key="GridCell.Tab.0.center" timestamp="1602529962832">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="159" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602447290160" />
-    <state width="1323" height="159" key="GridCell.Tab.0.left" timestamp="1602447290160">
+    <state width="1323" height="159" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602529962832" />
+    <state width="1323" height="159" key="GridCell.Tab.0.left" timestamp="1602529962832">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="159" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602447290160" />
-    <state width="1323" height="159" key="GridCell.Tab.0.right" timestamp="1602447290160">
+    <state width="1323" height="159" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602529962832" />
+    <state width="1323" height="159" key="GridCell.Tab.0.right" timestamp="1602529962832">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="159" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602447290160" />
-    <state x="186" y="9" key="SettingsEditor" timestamp="1602274796095">
+    <state width="1323" height="159" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602529962832" />
+    <state x="186" y="9" key="SettingsEditor" timestamp="1602529922085">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="186" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1602274796095" />
+    <state x="186" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1602529922085" />
     <state x="390" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1602423715877">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
