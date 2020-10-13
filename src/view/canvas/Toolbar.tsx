@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import ColorPalette from "./palette";
 
-function DrawToolbar(props: { color: string; onChangeColor: (arg0: string) => void; }) {
+// @ts-ignore
+function DrawToolbar(props) {
 
 
     return (

@@ -1,14 +1,13 @@
 import { Dispatch } from 'redux';
 import * as AuthService from '../services/authorization';
 import * as authActions from '../store/actions/auth';
-import * as H from "history";
 
 export function LogIn(email: string, password: string, history: any) {
     return (dispatch: Dispatch) => {
         dispatch(authActions.loginInAction());
         AuthService.LogIN(email, password).then(() => {
             dispatch(authActions.SuccessLoginInAction());
-            history.push('/');
+            history.push('/paint');
         });
     };
 }
@@ -18,7 +17,7 @@ export function registration(email: string, name: string, surname: string, passw
         dispatch(authActions.RegisterAction());
         AuthService.registration(email, name, surname, password).then(() => {
             dispatch(authActions.SuccessRegisterAction());
-            history.push('/login');
+            history.push('/');
         });
     };
 }

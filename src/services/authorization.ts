@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 export const Logout = () => {
     return firebase.auth().signOut();
@@ -21,7 +21,6 @@ export const registration = (email: string, name: string, surname: string, passw
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
-            console.log(name);
             firebase.database().ref().child(`users/${res.user!.uid}` ).set({ email:email, name:name, surname:surname}).then (r =>console.log(r));
         });
 };

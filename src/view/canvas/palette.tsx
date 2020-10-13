@@ -1,21 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import cn from "classnames";
-import { colors, COLOR_MAP } from "../../helpers/Constants/convasConsts";
+import React from 'react';
+import PropTypes from 'prop-types';
+import cn from 'classnames';
+import {Colors, colors} from '../../helpers/constants/convasConsts';
 
-function ColorPalette(props: { color: string; onChangeColor: (arg0: string) => void; }) {
+function ColorPalette(props: { color: string; onChangeColor: (arg0: string) => void }) {
     return (
         <div className="color-palette">
-            {colors.map((colorKey:string) => (
+            {colors.map((color: Colors) => (
                 <div
-                    key={colorKey}
-                    className={cn("color-item", {
-                        selected: colorKey === props.color
+                    key={color}
+                    className={cn('color-item', {
+                        selected: color === props.color,
                     })}
-                    // @ts-ignore
-                    style={{ backgroundColor: COLOR_MAP [colorKey] }}
+                    style={{ backgroundColor: color }}
                     onClick={() => {
-                        props.onChangeColor(colorKey);
+                        props.onChangeColor(color);
                     }}
                 />
             ))}
@@ -25,7 +24,7 @@ function ColorPalette(props: { color: string; onChangeColor: (arg0: string) => v
 
 ColorPalette.propTypes = {
     color: PropTypes.string.isRequired,
-    onChangeColor: PropTypes.func.isRequired
+    onChangeColor: PropTypes.func.isRequired,
 };
 
 export default ColorPalette;

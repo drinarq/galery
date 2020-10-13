@@ -7,8 +7,6 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { rootReducer } from './store/reducers';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-// import {createStore} from 'redux';
-// import {Provider} from 'react-redux';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyDRC8cKUH8box0qsBCqdxCg6x0wAQl84S0',

@@ -1,27 +1,49 @@
 import React, { useState } from 'react';
 import '../../styles/canvas.css';
 import { Stage, Layer, Line } from 'react-konva';
-import {  COLOR_MAP } from '../../helpers/Constants/convasConsts';
+import { Colors, height, width} from '../../helpers/constants/convasConsts';
 import DrawToolbar from './Toolbar';
+import {AppBar, Toolbar, IconButton, MenuItem, Menu, Button} from "@material-ui/core";
+import {AccountCircle} from "@material-ui/icons";
+import {LogOut} from "../../middleware/auth";
+import {useDispatch} from "react-redux";
+import {useHistory, Link} from "react-router-dom";
+import {getUserData} from "../../middleware/getUserData";
 
 // @ts-ignore
-const getScaledPoint = (stage, scale) => {
+const getPoint = (stage) => {
     const { x, y } = stage.getPointerPosition();
-    return { x: x / scale, y: y / scale };
+    return { x: x , y: y };
+
 };
 
 function Canvas(): JSX.Element {
     // @ts-ignore
-    let stage=null;
-    const [color, setColor] = useState("DARK");
-    const [scale, setScale] = useState(1);
+    let stage = null;
+    const [color, setColor] = useState(Colors.DARK);
     const [currentLine, setCurrentLine] = useState(null);
     const [lines, setLines] = useState([]);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleLogout = () => {
+        dispatch(LogOut( history));
+    };
+
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const onMouseDown = () => {
         // @ts-ignore
-        const { x, y } = getScaledPoint(stage, scale);
-        console.log("onMouseDown");
+        const { x, y } = getPoint(stage);
         // @ts-ignore
         setCurrentLine({ points: [x, y], color });
     };
@@ -29,7 +51,7 @@ function Canvas(): JSX.Element {
     const onMouseMove = () => {
         if (currentLine) {
             // @ts-ignore
-            const { x, y } = getScaledPoint(stage, scale);
+            const { x, y } = getPoint(stage);
 
             setCurrentLine({
                 // @ts-ignore
@@ -41,7 +63,7 @@ function Canvas(): JSX.Element {
 
     const onMouseUp = () => {
         // @ts-ignore
-        const { x, y } = getScaledPoint(stage, scale);
+        const { x, y } = getPoint(stage);
         setCurrentLine(null);
         // @ts-ignore
         setLines([...lines, { ...currentLine, points: [...currentLine.points, x, y] }]);
@@ -54,21 +76,66 @@ function Canvas(): JSX.Element {
         }
     };
 
-    const onChangeColor = (color: string) => {
+    const onChangeColor = (color: Colors) => {
         setColor(color);
+    };
+
+    const userData= () => {
+        console.log("userData");
+        dispatch(getUserData( ));
     };
 
     return (
         <div className="container">
+            <AppBar className="AppBar" color="secondary">
+                <div className="galleryButton">
+                <Button onClick={()=>history.push('/gallery')} variant="contained" color="primary" >
+                    Gallery
+                </Button>
+                    <div></div>
+                </div>
+                <Toolbar>
+
+                <div  className="UserIcon">
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleMenu}
+                        color="primary"
+                    >
+                        <AccountCircle />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        <MenuItem  onClick={handleLogout}>Logout</MenuItem>
+                    </Menu>
+                </div>
+                </Toolbar>
+
+            </AppBar>
             <DrawToolbar
                 color={color}
-                // @ts-ignore
-                scale={scale}
                 onChangeColor={onChangeColor}
             />
             <Stage
-                ref={setStageRef}
                 className="konva-container"
+                ref={setStageRef}
+                width={width}
+                height={height}
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUp}
@@ -76,19 +143,17 @@ function Canvas(): JSX.Element {
                 <Layer>
                     <Line
                         {...currentLine}
-                        scale={{ x: scale, y: scale }}
                         strokeWidth={1}
                         // @ts-ignore
-                        stroke={COLOR_MAP[color]}
+                        stroke={color}
                     />
                     {lines.map((line, index) => (
                         <Line
                             key={index}
                             {...line}
-                            scale={{ x: scale, y: scale }}
                             strokeWidth={1}
                             // @ts-ignore
-                            stroke={COLOR_MAP[line.color]}
+                            stroke={line.color}
                         />
                     ))}
                 </Layer>
