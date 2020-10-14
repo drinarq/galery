@@ -22,3 +22,12 @@
     margin-left: 83%;
     margin-top: 0.5%;
 }
+.galleryContainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 80%;
+    background-color: white;
+
+}

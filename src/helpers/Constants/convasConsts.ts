@@ -14,6 +14,6 @@ export enum Colors {
     MAROON = '#800000',
 }
 
-export const convasHeight = 750;
-export const convasWidth = 1000;
+export const canvasHeight = 750;
+export const canvasWidth = 1000;
 export const colors = Object.values(Colors);

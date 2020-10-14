@@ -2,10 +2,10 @@ import { Dispatch } from 'redux';
 import * as AuthService from '../services/authorization';
 import * as authActions from '../store/actions/auth';
 
-export function LogIn(email: string, password: string, history: any) {
-    return (dispatch: Dispatch) => {
+export  function LogIn(email: string, password: string, history: any) {
+    return async(dispatch: Dispatch) => {
         dispatch(authActions.loginInAction());
-        AuthService.LogIN(email, password).then(() => {
+       await AuthService.LogIN(email, password).then(() => {
             dispatch(authActions.SuccessLoginInAction());
             history.push('/paint');
         });

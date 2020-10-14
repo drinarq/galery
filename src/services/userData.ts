@@ -1,9 +1,13 @@
 import firebase from "firebase";
 
-export const  userData =()=>  firebase.database().ref(`users/${firebase.auth().currentUser?.uid}`).once("value").then(function (snapshot){
+export const  userData =()=>  firebase.database()
+    .ref(`users/${firebase.auth().currentUser?.uid}`)
+    .once("value")
+    .then(
+        function (snapshot)
+        {
     const name=snapshot.child('name').val();
     const surname=snapshot.child('surname').val();
-    console.log(name+" "+surname);
-
+    console.log(name +''+surname);
     return `${name} ${surname}`;
 });

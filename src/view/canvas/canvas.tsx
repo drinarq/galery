@@ -1,15 +1,16 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import '../../styles/canvas.css';
 import { Stage, Layer, Line } from 'react-konva';
-import { Colors, convasHeight, convasWidth } from '../../helpers/Constants/convasConsts';
+import { Colors, canvasHeight, canvasWidth } from '../../helpers/Constants/convasConsts';
 import DrawToolbar from './Toolbar';
 import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { LogOut } from '../../middleware/auth';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getUserData } from '../../middleware/getUserData';
 import {selectUserData} from "../../selectors/userDataSelector";
+import {saveSnapshot} from "../../middleware/saveSnapshot";
+import Konva from "konva";
 
 // @ts-ignore
 const getPoint = (stage) => {
@@ -31,16 +32,22 @@ function Canvas(): JSX.Element {
     const [fullName,setFullName]=useState('');
     const open = Boolean(anchorEl);
 
-    useEffect(() => {
-        dispatch(getUserData());
-    }, [dispatch]);
 
     useEffect(() => {
-        setFullName(state.userData.name);
+        setFullName(state.userData);
     }, [state]);
 
     const handleLogout = () => {
         dispatch(LogOut(history));
+    };
+
+    const handleSaveSnapshot = () => {
+        const canvas = document.querySelector("canvas");
+        let qwerty;
+        if(canvas!=null)
+             qwerty=canvas.toDataURL('image/png',1);
+
+        dispatch(saveSnapshot(canvas.toDataURL('image/png',1)));
     };
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -96,15 +103,19 @@ function Canvas(): JSX.Element {
 
     return (
         <div className="container">
-            <AppBar className="AppBar" color="secondary">
-                <div className="galleryButton">
-                    <Button onClick={goToGallery} variant="contained" color="primary">
+            <AppBar className="appBar" color="secondary">
+                <div className="groupButton">
+                    <Button className='button' onClick={goToGallery} variant="contained" color="primary">
                         Gallery
                     </Button>
-                    <div>{fullName}</div>
+                    <Button className='button' onClick={handleSaveSnapshot} variant="contained" color="primary">
+                        add
+                    </Button>
+
                 </div>
+
                 <Toolbar>
-                    <div className="UserIcon">
+                    <div className="userIcon">
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -129,7 +140,8 @@ function Canvas(): JSX.Element {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            <MenuItem disabled>{fullName}</MenuItem>
+                            <MenuItem  onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
                     </div>
                 </Toolbar>
@@ -138,17 +150,16 @@ function Canvas(): JSX.Element {
             <Stage
                 className="konva-container"
                 ref={setStageRef}
-                width={convasWidth}
-                height={convasHeight}
+                width={canvasWidth}
+                height={canvasHeight}
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUp}
             >
-                <Layer>
+                <Layer  id="canvasLayer">
                     <Line
                         {...currentLine}
                         strokeWidth={1}
-                        // @ts-ignore
                         stroke={color}
                     />
                     {lines.map((line, index) => (
@@ -156,7 +167,7 @@ function Canvas(): JSX.Element {
                             key={index}
                             {...line}
                             strokeWidth={1}
-                            // @ts-ignore
+                            //@ts-ignore
                             stroke={line.color}
                         />
                     ))}

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import '../styles/gallery.css';
 import {useDispatch, useSelector} from "react-redux";
 import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-ui/core';
@@ -8,6 +8,10 @@ import { LogOut } from '../middleware/auth';
 
 
 function Gallery(): JSX.Element {
+
+
+    const arr=[]
+
 
     const history = useHistory();
     const dispatch=useDispatch();
@@ -72,6 +76,9 @@ function Gallery(): JSX.Element {
                     </div>
                 </Toolbar>
             </AppBar>
+            <div className="galleryContainer">
+
+            </div>
         </div>
     );
 }

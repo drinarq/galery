@@ -1,17 +1,19 @@
 import { userDataActionTypes } from '../actions/userData';
 import { handleActions } from 'redux-actions';
+import {AnyAction} from 'redux';
 
 export interface State {
-    getUserDataError:string
+    userData:string
 }
 const initialState={
-    getUserDataError:'',
+    userData:'',
 };
 
-export const authReducer = handleActions<State>(
+export const userDataReducer = handleActions<State>(
     {
-        [userDataActionTypes.GET_USER_DATA]: (state: State) => ({
+        [userDataActionTypes.SUCCESS_ADD_DATA]: (state: State,action:AnyAction) => ({
             ...state,
+            userData:action.payload
         }),
     },
     initialState,

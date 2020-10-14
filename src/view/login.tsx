@@ -5,6 +5,8 @@ import '../styles/login.css';
 import { useForm} from "react-hook-form";
 import {LogIn} from "../middleware/auth";
 import {useDispatch} from "react-redux";
+import {addUserData} from "../middleware/addUserData";
+
 
 function Login(): JSX.Element {
 
@@ -16,8 +18,9 @@ function Login(): JSX.Element {
     });
 
     // @ts-ignore
-    const handleLogIn = ((data): SubmitHandler<Record<string, any>> => {
-        dispatch(LogIn(data.email,data.password, history));
+    const handleLogIn =  (async(data): SubmitHandler<Record<string, any>> => {
+        await dispatch(LogIn(data.email,data.password, history));
+         dispatch(addUserData());
     });
 
     return (
