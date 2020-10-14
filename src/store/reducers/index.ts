@@ -4,10 +4,15 @@ import * as userData from './userData';
 
 export interface AppState {
     authState: auth.State;
-    userdataState:userData.State;
+    userDataState: userData.State;
+}
+
+export interface AppState {
+    authState: auth.State;
+    userDataState:userData.State;
 }
 
 export const rootReducer = combineReducers<AppState>({
     authState: auth.authReducer,
-    userdataState:userData.authReducer,
+    userDataState:userData.authReducer,
 });

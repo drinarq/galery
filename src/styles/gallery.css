@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: row;
+    background-color: pink;
+}
+.AppBar{
+    height: 50px;
+    position:absolute;
+}
+
+.UserIcon{
+    margin-left: 97%;
+    margin-bottom: 4%;
+
+}
+.CanvasButton{
+    width: 5%;
+    height: 50%;
+    margin-left: 83%;
+    margin-top: 0.5%;
+}
