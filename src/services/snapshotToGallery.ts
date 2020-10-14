@@ -1,5 +1,5 @@
 import firebase from "firebase";
 
 export const  saveSnapshot =(image:string)=>  firebase.database()
-    .ref(`users/${firebase.auth().currentUser?.uid}/images/`)
+    .ref(`users/gallery/`)
     .set(image);

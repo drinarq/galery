@@ -1,21 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { useHistory} from 'react-router-dom';
 import '../styles/gallery.css';
 import {useDispatch, useSelector} from "react-redux";
 import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { LogOut } from '../middleware/auth';
+import {selectUserData} from "../selectors/userDataSelector";
 
 
 function Gallery(): JSX.Element {
 
+    const state=useSelector(selectUserData);
+    const[fullName,setFullName]=useState('');
 
-    const arr=[]
-
+    useEffect(() => {
+        setFullName(state.userData);
+    }, [state]);
 
     const history = useHistory();
     const dispatch=useDispatch();
-    // const selector = useSelector(state => state.asd.123)
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -34,7 +37,7 @@ function Gallery(): JSX.Element {
 
     const goToPaint=() => {
         history.push('/paint')
-    }
+    };
 
     return (
         <div className='container'>
@@ -43,7 +46,6 @@ function Gallery(): JSX.Element {
                     <Button onClick={goToPaint} variant="contained" color="primary">
                         Canvas
                     </Button>
-                    <div></div>
                 </div>
                 <Toolbar>
                     <div className="UserIcon">
@@ -71,6 +73,7 @@ function Gallery(): JSX.Element {
                             open={open}
                             onClose={handleClose}
                         >
+                            <MenuItem disabled>{fullName}</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
                     </div>

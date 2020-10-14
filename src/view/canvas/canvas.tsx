@@ -9,8 +9,7 @@ import { LogOut } from '../../middleware/auth';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {selectUserData} from "../../selectors/userDataSelector";
-import {saveSnapshot} from "../../middleware/saveSnapshot";
-import Konva from "konva";
+import {saveSnapshot,saveSnapshotToGallery} from "../../middleware/saveSnapshot";
 
 // @ts-ignore
 const getPoint = (stage) => {
@@ -43,11 +42,16 @@ function Canvas(): JSX.Element {
 
     const handleSaveSnapshot = () => {
         const canvas = document.querySelector("canvas");
-        let qwerty;
-        if(canvas!=null)
-             qwerty=canvas.toDataURL('image/png',1);
-
+        if(canvas!==null){
         dispatch(saveSnapshot(canvas.toDataURL('image/png',1)));
+        }
+    };
+
+    const handleSaveSnapshotToGallery = () => {
+        const canvas = document.querySelector("canvas");
+        if(canvas!==null){
+            dispatch(saveSnapshotToGallery(canvas.toDataURL('image/png',1)));
+        }
     };
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -99,7 +103,7 @@ function Canvas(): JSX.Element {
 
     const goToGallery=() => {
         history.push('/gallery')
-    }
+    };
 
     return (
         <div className="container">
@@ -109,7 +113,10 @@ function Canvas(): JSX.Element {
                         Gallery
                     </Button>
                     <Button className='button' onClick={handleSaveSnapshot} variant="contained" color="primary">
-                        add
+                        save local
+                    </Button>
+                    <Button className='button' onClick={handleSaveSnapshotToGallery} variant="contained" color="primary">
+                        save to Gallery
                     </Button>
 
                 </div>
@@ -156,7 +163,7 @@ function Canvas(): JSX.Element {
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUp}
             >
-                <Layer  id="canvasLayer">
+                <Layer>
                     <Line
                         {...currentLine}
                         strokeWidth={1}
