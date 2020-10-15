@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/canvas.css';
 import { Stage, Layer, Line } from 'react-konva';
 import { Colors, canvasHeight, canvasWidth } from '../../helpers/Constants/convasConsts';
@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { selectUserData } from '../../selectors/userDataSelector';
 import { saveSnapshot, saveSnapshotToGallery } from '../../middleware/saveSnapshot';
-import { getImage } from '../../middleware/getImage';
 
 const getPoint = (stage) => {
     const { x, y } = stage.getPointerPosition();

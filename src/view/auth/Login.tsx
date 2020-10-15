@@ -1,12 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import '../styles/login.css';
 import { useForm } from 'react-hook-form';
-import { LogIn, getUserId } from '../middleware/auth';
+import { LogIn } from '../../middleware/auth';
 import { useDispatch } from 'react-redux';
-import { addUserData } from '../middleware/addUserData';
-import * as authActions from '../store/actions/auth';
 
 function Login(): JSX.Element {
     const history = useHistory();
