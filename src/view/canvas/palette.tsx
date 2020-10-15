@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import {Colors, colors} from '../../helpers/Constants/convasConsts';
+import { Colors, colors } from '../../helpers/Constants/convasConsts';
 
 function ColorPalette(props: { color: string; onChangeColor: (arg0: string) => void }) {
     return (

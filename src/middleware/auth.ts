@@ -1,12 +1,20 @@
 import { Dispatch } from 'redux';
 import * as AuthService from '../services/authorization';
 import * as authActions from '../store/actions/auth';
+import { addUserData } from './addUserData';
+import * as getUserDataActions from '../store/actions/userData';
+import * as getUserDataService from '../services/userData';
 
-export  function LogIn(email: string, password: string, history: any) {
-    return async(dispatch: Dispatch) => {
+export function LogIn(email: string, password: string, history: any) {
+    return async (dispatch: Dispatch) => {
         dispatch(authActions.loginInAction());
-       await AuthService.LogIN(email, password).then(() => {
+        dispatch(getUserDataActions.addUserDataAction());
+        AuthService.LogIN(email, password).then(() => {
             dispatch(authActions.SuccessLoginInAction());
+            dispatch(authActions.isAuthorised(AuthService.getUserId()));
+            getUserDataService.userData().then((fullName) => {
+                dispatch(getUserDataActions.successAddUserDataAction(fullName));
+            });
             history.push('/paint');
         });
     };
@@ -32,9 +40,9 @@ export function LogOut(history: any) {
     };
 }
 
-export function isAuthorized() {
+export function getUserId() {
     return (dispatch: Dispatch) => {
-       const isAuth= AuthService.isAuthorized();
-       dispatch(authActions.isAuthorised(isAuth))
-        }
-    }
+        const isAuth = AuthService.getUserId();
+        dispatch(authActions.isAuthorised(isAuth));
+    };
+}

@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 
 export enum AuthActionTypes {
-    LOGIN_IN = ' LOGIN_IN',
+    LOGIN_IN = 'LOGIN_IN',
     SUCCESS_LOGIN_IN = ' SUCCESS_LOGIN_IN',
 
     REGISTER = ' REGISTER',
@@ -10,8 +10,7 @@ export enum AuthActionTypes {
     LOGOUT = ' LOGOUT',
     SUCCESS_LOGOUT = ' SUCCESS_LOGOUT',
 
-    IS_AUTHORIZED=' IS_AUTHORIZED',
-
+    GET_USER_ID = ' GET_USER_ID',
 }
 
 export const loginInAction = createAction(AuthActionTypes.LOGIN_IN);
@@ -23,4 +22,4 @@ export const SuccessRegisterAction = createAction(AuthActionTypes.SUCCESS_REGIST
 export const LogoutAction = createAction(AuthActionTypes.LOGOUT);
 export const SuccessLogoutAction = createAction(AuthActionTypes.SUCCESS_LOGOUT);
 
-export const isAuthorised=createAction(AuthActionTypes.IS_AUTHORIZED,(payload:string|undefined)=>payload);
+export const isAuthorised = createAction(AuthActionTypes.GET_USER_ID, (payload: string | undefined) => payload);

@@ -21,11 +21,15 @@ export const registration = (email: string, name: string, surname: string, passw
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
-            firebase.database().ref().child(`users/${res.user!.uid}` ).set({ email:email, name:name, surname:surname}).then (r =>console.log(r));
+            firebase
+                .database()
+                .ref()
+                .child(`users/${res.user!.uid}`)
+                .set({ email: email, name: name, surname: surname })
+                .then((r) => console.log(r));
         });
 };
 
-export const isAuthorized=()=>{
-    return firebase
-        .auth().currentUser?.uid
-}
+export const getUserId = () => {
+    return firebase.auth().currentUser?.uid;
+};

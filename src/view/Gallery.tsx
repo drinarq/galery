@@ -1,29 +1,26 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import { useHistory} from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../styles/gallery.css';
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { LogOut } from '../middleware/auth';
-import {selectUserData} from "../selectors/userDataSelector";
-import {selectImage} from "../selectors/getImageSelector";
-import zIndex from "@material-ui/core/styles/zIndex";
-import {getImage} from "../middleware/getImage";
-
+import { selectUserData } from '../selectors/userDataSelector';
+import { selectImage } from '../selectors/getImageSelector';
+import { getImage } from '../middleware/getImage';
 
 function Gallery(): JSX.Element {
-
-    const userDataState=useSelector(selectUserData);
-    const imageState=useSelector(selectImage);
-    const[fullName,setFullName]=useState('');
+    const userDataState = useSelector(selectUserData);
+    const imageState = useSelector(selectImage);
+    const [fullName, setFullName] = useState('');
 
     useEffect(() => {
         setFullName(userDataState.userData);
         dispatch(getImage());
-    }, [userDataState,imageState]);
+    }, [userDataState, imageState]);
 
     const history = useHistory();
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -40,12 +37,12 @@ function Gallery(): JSX.Element {
         dispatch(LogOut(history));
     };
 
-    const goToPaint=() => {
-        history.push('/paint')
+    const goToPaint = () => {
+        history.push('/paint');
     };
 
     return (
-        <div className='container'>
+        <div className="container">
             <AppBar className="appBar" color="secondary">
                 <div className="canvasButton">
                     <Button onClick={goToPaint} variant="contained" color="primary">
@@ -85,9 +82,9 @@ function Gallery(): JSX.Element {
                 </Toolbar>
             </AppBar>
             <div className="galleryContainer">
-                {imageState.images.map( (value, index)=>
-                     <img src={value} key={`tesafasfa${index}`} className="testDiv" />
-                )}
+                {imageState.images.map((value, index) => (
+                    <img src={value} key={`tesafasfa${index}`} className="testDiv" />
+                ))}
             </div>
         </div>
     );

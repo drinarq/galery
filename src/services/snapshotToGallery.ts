@@ -1,5 +1,3 @@
-import firebase from "firebase";
+import firebase from 'firebase';
 
-export const  saveSnapshot =(image:string)=>  firebase.database()
-    .ref(`users/gallery/`)
-    .push(image);
+export const saveSnapshot = (image: string) => firebase.database().ref(`users/gallery/`).push(image);

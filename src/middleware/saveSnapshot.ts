@@ -1,24 +1,22 @@
 import { Dispatch } from 'redux';
 import * as saveSnapshotService from '../services/saveSnapshot';
 import * as saveSnapshotAction from '../store/actions/saveSnapshot';
-import * as snapshotToGalleryService from '../services/snapshotToGallery'
+import * as snapshotToGalleryService from '../services/snapshotToGallery';
 
-export function saveSnapshot(image:string){
-    return (dispatch:Dispatch)=>{
+export function saveSnapshot(image: string) {
+    return (dispatch: Dispatch) => {
         dispatch(saveSnapshotAction.SavePaintSnapshot());
-        saveSnapshotService.saveSnapshot(image).then(
-            (image)=>{
-                dispatch(saveSnapshotAction.successSavePaintSnapshot(image));
-            })
-    }
+        saveSnapshotService.saveSnapshot(image).then((image) => {
+            dispatch(saveSnapshotAction.successSavePaintSnapshot(image));
+        });
+    };
 }
 
-export function saveSnapshotToGallery(image:string){
-    return (dispatch:Dispatch)=>{
+export function saveSnapshotToGallery(image: string) {
+    return (dispatch: Dispatch) => {
         dispatch(saveSnapshotAction.SavePaintSnapshot());
-        snapshotToGalleryService.saveSnapshot(image).then(
-            (image)=>{
-                dispatch(saveSnapshotAction.successSavePaintSnapshot(image));
-            })
-    }
+        snapshotToGalleryService.saveSnapshot(image).then((image) => {
+            dispatch(saveSnapshotAction.successSavePaintSnapshot(image));
+        });
+    };
 }

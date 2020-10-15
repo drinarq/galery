@@ -17,7 +17,7 @@ const firebaseConfig = {
     messagingSenderId: '79422789850',
     appId: '1:79422789850:web:a1e84119ac7885af4eade3',
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));

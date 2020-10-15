@@ -1,12 +1,12 @@
-import {saveSnapshotTypes} from '../actions/saveSnapshot';
+import { saveSnapshotTypes } from '../actions/saveSnapshot';
 import { handleActions } from 'redux-actions';
 
 export interface State {
-    saveSnapshotError:string
+    saveSnapshotError: string;
 }
 
 const initialState = {
-    saveSnapshotError:''
+    saveSnapshotError: '',
 };
 
 export const saveSnapshotReducer = handleActions<State>(
@@ -16,7 +16,7 @@ export const saveSnapshotReducer = handleActions<State>(
         }),
         [saveSnapshotTypes.SUCCESS_SAVE_PAINT_SNAPSHOT]: (state: State) => ({
             ...state,
-        })
+        }),
     },
     initialState,
 );
