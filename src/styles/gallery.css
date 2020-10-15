@@ -1,33 +1,51 @@
+
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(100%);
     flex-direction: row;
     background-color: pink;
+    overflow-x: hidden;
+
 }
-.AppBar{
+.appBar{
     height: 50px;
     position:absolute;
 }
 
-.UserIcon{
+.userIcon{
     margin-left: 97%;
-    margin-bottom: 4%;
+    margin-bottom: 5%;
 
 }
-.CanvasButton{
-    width: 5%;
-    height: 50%;
-    margin-left: 83%;
-    margin-top: 0.5%;
+
+.groupButton{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
 }
+
 .galleryContainer{
     position: relative;
     display: flex;
     flex-direction: row;
     height: 100vh;
+    flex-wrap: wrap;
     width: 80%;
-    background-color: white;
+    background-color: indianred;
+    overflow: auto;
+}
 
+div::-webkit-scrollbar{
+    width: 0;
+}
+
+.testDiv{
+    width: 200px;
+    height: 200px;
+    margin: 150px 40px;
+    background-color: white;
+    border-radius: 2px;
 }

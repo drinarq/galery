@@ -24,3 +24,8 @@ export const registration = (email: string, name: string, surname: string, passw
             firebase.database().ref().child(`users/${res.user!.uid}` ).set({ email:email, name:name, surname:surname}).then (r =>console.log(r));
         });
 };
+
+export const isAuthorized=()=>{
+    return firebase
+        .auth().currentUser?.uid
+}

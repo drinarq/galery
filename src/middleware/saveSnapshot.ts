@@ -7,7 +7,7 @@ export function saveSnapshot(image:string){
     return (dispatch:Dispatch)=>{
         dispatch(saveSnapshotAction.SavePaintSnapshot());
         saveSnapshotService.saveSnapshot(image).then(
-            (image:string)=>{
+            (image)=>{
                 dispatch(saveSnapshotAction.successSavePaintSnapshot(image));
             })
     }
@@ -17,7 +17,7 @@ export function saveSnapshotToGallery(image:string){
     return (dispatch:Dispatch)=>{
         dispatch(saveSnapshotAction.SavePaintSnapshot());
         snapshotToGalleryService.saveSnapshot(image).then(
-            (image:string)=>{
+            (image)=>{
                 dispatch(saveSnapshotAction.successSavePaintSnapshot(image));
             })
     }

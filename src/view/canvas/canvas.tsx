@@ -8,8 +8,9 @@ import { AccountCircle } from '@material-ui/icons';
 import { LogOut } from '../../middleware/auth';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {selectUserData} from "../../selectors/userDataSelector";
+import {selectUserData,} from "../../selectors/userDataSelector";
 import {saveSnapshot,saveSnapshotToGallery} from "../../middleware/saveSnapshot";
+import {getImage} from "../../middleware/getImage";
 
 // @ts-ignore
 const getPoint = (stage) => {

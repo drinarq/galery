@@ -80,7 +80,7 @@ function Registration() {
                     <input className="button" value="Регистрация" disabled={formState.isSubmitting} type="submit" />
                 </form>
 
-                <Link to="/login">Вход</Link>
+                <Link to="/">Вход</Link>
             </div>
             </div>
     );

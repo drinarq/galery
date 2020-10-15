@@ -8,6 +8,6 @@ export const  userData =()=>  firebase.database()
         {
     const name=snapshot.child('name').val();
     const surname=snapshot.child('surname').val();
-    console.log(name +''+surname);
+
     return `${name} ${surname}`;
 });

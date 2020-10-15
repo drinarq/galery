@@ -6,16 +6,21 @@ import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-u
 import { AccountCircle } from '@material-ui/icons';
 import { LogOut } from '../middleware/auth';
 import {selectUserData} from "../selectors/userDataSelector";
+import {selectImage} from "../selectors/getImageSelector";
+import zIndex from "@material-ui/core/styles/zIndex";
+import {getImage} from "../middleware/getImage";
 
 
 function Gallery(): JSX.Element {
 
-    const state=useSelector(selectUserData);
+    const userDataState=useSelector(selectUserData);
+    const imageState=useSelector(selectImage);
     const[fullName,setFullName]=useState('');
 
     useEffect(() => {
-        setFullName(state.userData);
-    }, [state]);
+        setFullName(userDataState.userData);
+        dispatch(getImage());
+    }, [userDataState,imageState]);
 
     const history = useHistory();
     const dispatch=useDispatch();
@@ -41,14 +46,14 @@ function Gallery(): JSX.Element {
 
     return (
         <div className='container'>
-            <AppBar className="AppBar" color="secondary">
-                <div className="CanvasButton">
+            <AppBar className="appBar" color="secondary">
+                <div className="canvasButton">
                     <Button onClick={goToPaint} variant="contained" color="primary">
                         Canvas
                     </Button>
                 </div>
                 <Toolbar>
-                    <div className="UserIcon">
+                    <div className="userIcon">
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -80,7 +85,9 @@ function Gallery(): JSX.Element {
                 </Toolbar>
             </AppBar>
             <div className="galleryContainer">
-
+                {imageState.images.map( (value, index)=>
+                     <img src={value} key={`tesafasfa${index}`} className="testDiv" />
+                )}
             </div>
         </div>
     );

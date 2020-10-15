@@ -31,3 +31,10 @@ export function LogOut(history: any) {
         });
     };
 }
+
+export function isAuthorized() {
+    return (dispatch: Dispatch) => {
+       const isAuth= AuthService.isAuthorized();
+       dispatch(authActions.isAuthorised(isAuth))
+        }
+    }
