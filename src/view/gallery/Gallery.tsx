@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../styles/gallery.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
@@ -8,6 +7,7 @@ import { LogOut } from '../../middleware/auth';
 import { selectUserData } from '../../selectors/userDataSelector';
 import { selectImage } from '../../selectors/getImageSelector';
 import { getImage } from '../../middleware/getImage';
+import './gallery.css';
 
 function Gallery(): JSX.Element {
     const userDataState = useSelector(selectUserData);

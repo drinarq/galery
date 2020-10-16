@@ -1,19 +1,19 @@
-import { getImageActionTypes } from '../actions/getImage';
+import { userDataActionTypes } from '../actions/userDataActions';
 import { handleActions } from 'redux-actions';
 import { AnyAction } from 'redux';
 
 export interface State {
-    images: string[];
+    userData: string;
 }
 const initialState = {
-    images: [],
+    userData: '',
 };
 
 export const userDataReducer = handleActions<State>(
     {
-        [getImageActionTypes.SUCCESS_GET_IMAGE]: (state: State, action: AnyAction) => ({
+        [userDataActionTypes.SUCCESS_ADD_DATA]: (state: State, action: AnyAction) => ({
             ...state,
-            images: action.payload,
+            userData: action.payload,
         }),
     },
     initialState,

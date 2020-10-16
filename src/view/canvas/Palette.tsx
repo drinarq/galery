@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { Colors, colors } from '../../helpers/Constants/convasConsts';
+import { Colors, colors } from '../../constants/convasConsts';
 
-function ColorPalette(props: { color: string; onChangeColor: (arg0: string) => void }) {
+function ColorPalette(props: { color: string; onChangeColor: (color: Colors) => void }): JSX.Element {
     return (
         <div className="color-palette">
             {colors.map((color: Colors) => (

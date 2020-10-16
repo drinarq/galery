@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/canvas.css';
+import './canvas.css';
 import { Stage, Layer, Line } from 'react-konva';
-import { Colors, canvasHeight, canvasWidth } from '../../helpers/Constants/convasConsts';
+import { Colors, canvasHeight, canvasWidth } from '../../constants/convasConsts';
 import DrawToolbar from './Toolbar';
 import { AppBar, Toolbar, IconButton, MenuItem, Menu, Button } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
@@ -10,18 +10,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { selectUserData } from '../../selectors/userDataSelector';
 import { saveSnapshot, saveSnapshotToGallery } from '../../middleware/saveSnapshot';
-
-const getPoint = (stage) => {
+const getPoint = (stage: any): Vector2d | null => {
     const { x, y } = stage.getPointerPosition();
-    return { x: x, y: y };
+    console.log(x + '  ' + y);
+    return { x, y };
 };
+
+// interface currentLine {
+//     points: Vector2d | null;
+//     color: Colors;
+// }
+// // interface setLine {
+// //     lines: currentLine;
+// // }
+interface Vector2d {
+    x: number;
+    y: number;
+}
 
 function Canvas(): JSX.Element {
     const dispatch = useDispatch();
     const history = useHistory();
     const state = useSelector(selectUserData);
 
-    let stage = null;
+    let stage: any = null;
 
     const [color, setColor] = useState(Colors.DARK);
     const [currentLine, setCurrentLine] = useState(null);
@@ -73,17 +85,17 @@ function Canvas(): JSX.Element {
                 ...currentLine,
                 points: [...currentLine.points, x, y],
             });
+            console.log(currentLine);
         }
     };
 
     const onMouseUp = () => {
-        const { x, y } = getPoint(stage);
+        const { x, y }: Vector2d | null = getPoint(stage);
         setCurrentLine(null);
-
         setLines([...lines, { ...currentLine, points: [...currentLine.points, x, y] }]);
     };
 
-    const setStageRef = (ref) => {
+    const setStageRef = (ref: any) => {
         if (ref) {
             stage = ref;
         }

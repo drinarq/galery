@@ -1,8 +1,8 @@
-import * as auth from './auth';
+import * as auth from './authReducer';
 import { combineReducers } from 'redux';
-import * as userData from './userData';
-import * as snapShot from './saveSnapshot';
-import * as getImage from './getImage';
+import * as userData from './userDataReducer';
+import * as snapShot from './snapshotReducer';
+import * as getImage from './imageReducer';
 
 export interface AppState {
     authState: auth.State;

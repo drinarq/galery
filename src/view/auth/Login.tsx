@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import '../styles/login.css';
+import './auth.css';
 import { useForm } from 'react-hook-form';
 import { LogIn } from '../../middleware/auth';
 import { useDispatch } from 'react-redux';
@@ -13,8 +13,9 @@ function Login(): JSX.Element {
         mode: 'onBlur',
     });
 
-    const handleLogIn = async (data): SubmitHandler<Record<string, any>> => {
-        await dispatch(LogIn(data.email, data.password, history));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleLogIn = (data: { [x: string]: any }) => {
+        dispatch(LogIn(data.email, data.password, history));
     };
 
     return (

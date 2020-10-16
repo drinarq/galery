@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
-import * as AuthService from '../services/authorization';
-import * as authActions from '../store/actions/auth';
-import { addUserData } from './addUserData';
-import * as getUserDataActions from '../store/actions/userData';
-import * as getUserDataService from '../services/userData';
+import * as AuthService from '../store/services/authorizationService';
+import * as authActions from '../store/actions/authActions';
+import * as getUserDataActions from '../store/actions/userDataActions';
+import * as getUserDataService from '../store/services/userDataService';
+import { History, LocationState } from 'history';
 
-export function LogIn(email: string, password: string, history: any) {
-    return async (dispatch: Dispatch) => {
+export function LogIn(email: string, password: string, history: History<LocationState>) {
+    return async (dispatch: Dispatch): Promise<void> => {
         dispatch(authActions.loginInAction());
         dispatch(getUserDataActions.addUserDataAction());
         AuthService.LogIN(email, password).then(() => {
@@ -20,8 +20,14 @@ export function LogIn(email: string, password: string, history: any) {
     };
 }
 
-export function registration(email: string, name: string, surname: string, password: string, history: any) {
-    return (dispatch: Dispatch) => {
+export function registration(
+    email: string,
+    name: string,
+    surname: string,
+    password: string,
+    history: History<LocationState>,
+) {
+    return (dispatch: Dispatch): void => {
         dispatch(authActions.RegisterAction());
         AuthService.registration(email, name, surname, password).then(() => {
             dispatch(authActions.SuccessRegisterAction());
@@ -30,8 +36,8 @@ export function registration(email: string, name: string, surname: string, passw
     };
 }
 
-export function LogOut(history: any) {
-    return (dispatch: Dispatch) => {
+export function LogOut(history: History<LocationState>) {
+    return (dispatch: Dispatch): void => {
         dispatch(authActions.LogoutAction());
         AuthService.Logout().then(() => {
             dispatch(authActions.SuccessLogoutAction());
@@ -41,7 +47,7 @@ export function LogOut(history: any) {
 }
 
 export function getUserId() {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch): void => {
         const isAuth = AuthService.getUserId();
         dispatch(authActions.isAuthorised(isAuth));
     };

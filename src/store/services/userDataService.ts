@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export const userData = () =>
+export const userData = (): Promise<string> =>
     firebase
         .database()
         .ref(`users/${firebase.auth().currentUser?.uid}`)

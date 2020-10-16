@@ -1,7 +1,6 @@
-import { AuthActionTypes } from '../actions/auth';
+import { AuthActionTypes } from '../actions/authActions';
 import { handleActions } from 'redux-actions';
 import { AnyAction } from 'redux';
-import setRef from '@material-ui/core/utils/setRef';
 
 export interface State {
     signInError: string;

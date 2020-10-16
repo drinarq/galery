@@ -1,4 +1,4 @@
-import { saveSnapshotTypes } from '../actions/saveSnapshot';
+import { saveSnapshotTypes } from '../actions/snapshotActions';
 import { handleActions } from 'redux-actions';
 
 export interface State {

@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import '../styles/login.css';
-import { registration } from '../middleware/auth';
+import './auth.css';
+import { registration } from '../../middleware/auth';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-function Registration() {
+function Registration(): JSX.Element {
     const { register, handleSubmit, errors, formState } = useForm({
         mode: 'onBlur',
     });
@@ -13,11 +13,9 @@ function Registration() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleRegister = (data): SubmitHandler<Record<string, any>> => {
+    const handleRegister = (data: { [x: string]: string }) => {
         dispatch(registration(data.email, data.name, data.surname, data.password, history));
     };
-
-    useEffect(() => {}, []);
 
     return (
         <div className="container">

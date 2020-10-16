@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export const getImage = () =>
+export const getImage = (): Promise<unknown[]> =>
     firebase
         .database()
         .ref(`users/gallery`)

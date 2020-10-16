@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import * as auth from '../store/reducers/auth';
+import * as auth from '../store/reducers/authReducer';
 import { AppState } from '../store/reducers';
 
 const isAuthorisedSelector = (state: AppState): auth.State => state.authState;
