@@ -10,19 +10,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { selectUserData } from '../../selectors/userDataSelector';
 import { saveSnapshot, saveSnapshotToGallery } from '../../middleware/saveSnapshot';
+
 const getPoint = (stage: any): Vector2d | null => {
     const { x, y } = stage.getPointerPosition();
     console.log(x + '  ' + y);
-    return { x, y };
+    return { x: x, y: y };
 };
 
-// interface currentLine {
-//     points: Vector2d | null;
-//     color: Colors;
-// }
-// // interface setLine {
-// //     lines: currentLine;
-// // }
+interface CurrentLines {
+    color: Colors;
+    points: number[];
+}
+interface setLine {
+    points: number[];
+}
 interface Vector2d {
     x: number;
     y: number;
@@ -36,8 +37,8 @@ function Canvas(): JSX.Element {
     let stage: any = null;
 
     const [color, setColor] = useState(Colors.DARK);
-    const [currentLine, setCurrentLine] = useState(null);
-    const [lines, setLines] = useState([]);
+    const [currentLine, setCurrentLine] = useState<CurrentLines | null>(null);
+    const [lines, setLines] = useState<setLine[]>([]);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [fullName, setFullName] = useState('');
     const open = Boolean(anchorEl);
@@ -73,26 +74,31 @@ function Canvas(): JSX.Element {
     };
 
     const onMouseDown = () => {
-        const { x, y } = getPoint(stage);
-        setCurrentLine({ points: [x, y], color });
+        const point = getPoint(stage);
+        if (point) {
+            setCurrentLine({ points: [point.x, point.y], color });
+        }
     };
 
     const onMouseMove = () => {
         if (currentLine) {
-            const { x, y } = getPoint(stage);
-
-            setCurrentLine({
-                ...currentLine,
-                points: [...currentLine.points, x, y],
-            });
-            console.log(currentLine);
+            const point = getPoint(stage);
+            if (point) {
+                setCurrentLine({
+                    ...currentLine,
+                    points: [...currentLine.points, point.x, point.y],
+                });
+                console.log(currentLine);
+            }
         }
     };
 
     const onMouseUp = () => {
-        const { x, y }: Vector2d | null = getPoint(stage);
-        setCurrentLine(null);
-        setLines([...lines, { ...currentLine, points: [...currentLine.points, x, y] }]);
+        const point = getPoint(stage);
+        if (point) {
+            setCurrentLine(null);
+            setLines([...lines, { ...currentLine, points: [...currentLine?.points, point.x, point.y] }]);
+        }
     };
 
     const setStageRef = (ref: any) => {
@@ -174,7 +180,7 @@ function Canvas(): JSX.Element {
                 <Layer>
                     <Line {...currentLine} strokeWidth={1} stroke={color} />
                     {lines.map((line, index) => (
-                        <Line key={index} {...line} strokeWidth={1} stroke={line.color} />
+                        <Line key={index} {...line} strokeWidth={1} stroke={color} />
                     ))}
                 </Layer>
             </Stage>

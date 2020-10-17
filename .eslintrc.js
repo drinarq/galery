@@ -1,3 +1,5 @@
+const { default: src } = require('*.bmp');
+
 module.exports = {
     parser: '@typescript-eslint/parser', // Specifies the ESLint parser
     parserOptions: {
